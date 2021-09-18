@@ -19,7 +19,7 @@ fs.readdirSync('./commands').forEach(dirs => {
     }
 });
 
-const rest = new REST({ version: '9' }).setToken("NzA1Mzk4NDE4MTI1ODgxMzQ2.XqrHeA.ck_uCe1dManlb4KnmOX-3oVMZi0");
+const rest = new REST({ version: '9' }).setToken("NzA1Mzk4NDE4MTI1ODgxMzQ2.XqrHeA.3eL_Yg4Qxg2Q1hQopYjFRCq1Sjs");
 
 (async () => {
 	try {
