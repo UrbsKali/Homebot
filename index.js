@@ -9,7 +9,7 @@ const requestListener = function (req, res) {
   }
   
   const server = http.createServer(requestListener);
-  server.listen(8080);
+  server.listen(process.env.PORT || 8080);
 // End of web server
 
 const client = new discord.Client({ disableMentions: 'everyone' });
