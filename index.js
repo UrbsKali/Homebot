@@ -1,8 +1,16 @@
 const fs = require('fs');
 const discord = require('discord.js');
-const { REST } = require('@discordjs/rest');
-const { Routes } = require('discord-api-types/v9');
+const http = require('http');
 
+// Start of web server for hosting
+const requestListener = function (req, res) {
+    res.writeHead(200);
+    res.end('go to <href link="https://urbskali.github.io/">https://urbskali.github.io/</href>');
+  }
+  
+  const server = http.createServer(requestListener);
+  server.listen(80);
+// End of web server
 
 const client = new discord.Client({ disableMentions: 'everyone' });
 

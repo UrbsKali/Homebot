@@ -5,6 +5,7 @@ module.exports = {
     utilisation: '\`{prefix}getHomework\` : devoir du jour \n \`{prefix}getHomework <yyyy-mm-dd>\` : devoir de ce jour \n \`{prefix}getHomework <+d>\` : devoir j+d',
 
     async execute(client, message, args) {
+        const jours = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'];
         var d = new Date();
         var test;
         try {
@@ -52,8 +53,8 @@ module.exports = {
         message.channel.send({
             embed: {
                 color: 'GREEN',
-                author: { name: `Les devoirs du ${d.getDate()}` },
-                footer: { text: "Ce bot n'est pas ENCORE utile" },
+                author: { name: `Les devoirs du ${jours[d.getDay()]} ${d.getDate()}` },
+                footer: { text: "Ce bot DEVIENT utile" },
                 timestamp: d,
                 fields: tmp,
                 

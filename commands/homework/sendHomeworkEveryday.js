@@ -7,7 +7,8 @@ module.exports = {
     async execute(client, message, args) {
         const geth = require('./getHomework')
         if (args[0] === "true"){
-            setInterval(await geth.execute(client, message, '+1'), 86400*1000)
+            setInterval( async function () {await geth.execute(client, message, ['+1'])}, 86400*1000)
+            message.channel.send("c'est bon !")
         } else if (args[0] === "false"){
             message.channel.send("j'ai pas codé la désactivation ...")
         }
