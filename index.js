@@ -1,20 +1,7 @@
 const fs = require('fs');
 const discord = require('discord.js');
-const http = require('http');
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
-
-
-const server = http.createServer((req, res) => {
-// Set the response HTTP header with HTTP status and Content type
-res.writeHead(200, {'Content-Type': 'text/plain'});
-// Send the response body "Hello World"
-res.end('The bot is online\n');
-});
-const port = 80
-server.listen(port, () => {
-console.log('Hello world listening on port', port);
-});
 
 
 const client = new discord.Client({ disableMentions: 'everyone' });
