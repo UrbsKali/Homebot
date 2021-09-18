@@ -11,7 +11,7 @@ res.writeHead(200, {'Content-Type': 'text/plain'});
 // Send the response body "Hello World"
 res.end('The bot is online\n');
 });
-const port = 8080
+const port = 80
 server.listen(port, () => {
 console.log('Hello world listening on port', port);
 });
