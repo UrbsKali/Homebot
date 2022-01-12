@@ -25,14 +25,10 @@ module.exports = {
         }
         
         
-        const ed = require("ecoledirecte.js");
-        const session_ = new ed.Session("Urbainisateur", "i}(]HMB^&P@S'4M");
-
-        const account = await session_.login().catch(err => {
-            console.error("This login did not go well.");
-        });
         var input_date = `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}` 
-        const homework = await account.getHomework({ dates: input_date });
+        
+        const homework = await getHm(input_date)
+        
 
         var tmp = [];
         var bool_ = true;
@@ -53,7 +49,7 @@ module.exports = {
         message.channel.send({
             embed: {
                 color: 'GREEN',
-                author: { name: `Les devoirs du ${jours[d.getDay()]} ${d.getDate()}` },
+                author: { name: `Les devoirs du ${jours[d.getDay()-1]} ${d.getDate()}` },
                 footer: { text: "Ce bot DEVIENT utile" },
                 timestamp: d,
                 fields: tmp,
@@ -62,3 +58,21 @@ module.exports = {
         });
     }
 };
+
+
+async function getHm(date){
+    const ed = require("ecoledirecte.js");
+    const session_ = new ed.Session("Urbainisateur", "i}(]HMB^&P@S'4M");
+
+    const account = await session_.login().catch(err => {
+        console.error("This login did not go well.");
+        return err
+    });
+    let homework;
+    try {
+        homework = await account.getHomework({ dates: date });
+    } catch (err) {
+        return err
+    }
+    return homework
+}

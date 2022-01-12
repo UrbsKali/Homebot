@@ -1,6 +1,8 @@
 const fs = require('fs');
 const discord = require('discord.js');
 const http = require('http');
+const cron = require('node-cron');
+
 
 // Start of web server for hosting
 const requestListener = function (req, res) {
@@ -39,10 +41,17 @@ for (const file of events) {
     const event = require(`./events/${file}`);
     client.on(file.split(".")[0], event.bind(null, client));
 };
-
-
-
-
-
+/*
+let data = JSON.parse(fs.readFileSync('./shed.json'));
+for (let i = 0; i < data.length; i++) {
+    cron.schedule(data[i].date, () => {
+        const geth = require('./commands/homework/getHomework')
+        var d = new Date();
+        var input_date = `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()+1}`
+        const channel = client.channels.cache.get(data[i].channel);
+        const homework = geth.getHm(input_date);
+        channel.send(homework);
+    });
+}*/
 
 client.login(client.config.discord.token);
