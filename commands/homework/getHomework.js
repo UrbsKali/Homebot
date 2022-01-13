@@ -27,7 +27,7 @@ module.exports = {
         
         var input_date = `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}` 
         
-        const homework = await getHm(input_date)
+        const homework = await getHm(input_date).catch(err => {console.log(` getHomework : ${err}`); return err})
         
 
         var tmp = [];
@@ -55,7 +55,7 @@ module.exports = {
                 fields: tmp,
                 
             },
-        });
+        }).catch(err => {console.log(` send message : ${err}`); return err})
     }
 };
 
@@ -72,6 +72,7 @@ async function getHm(date){
     try {
         homework = await account.getHomework({ dates: date });
     } catch (err) {
+        console.log(err);
         return err
     }
     return homework
