@@ -29,7 +29,6 @@ module.exports = {
         
         const homework = await getHm(input_date).catch(err => {console.log(` getHomework : ${err}`); return err})
         
-
         var tmp = [];
         var bool_ = true;
         var i = 0;
@@ -45,7 +44,7 @@ module.exports = {
         if (i === 0){
             tmp.push({name: "Infos :", value: "Pas de devoir pour aujourd'hui",})
         }
-
+        console.log(tmp, i);
         message.channel.send({
             embed: {
                 color: 'GREEN',

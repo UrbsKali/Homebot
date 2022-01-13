@@ -2,7 +2,7 @@ module.exports = {
     name: 'sendHomeworkEveryday',
     aliases: ['shed'],
     category: 'travail',
-    utilisation: '\`{prefix}sendHomeworkEveryday\ <true | false> <* * * * *>` : active dans le channel l\'envoi automatique des devoirs du lendemain',
+    utilisation: '\`{prefix}sendHomeworkEveryday\ <true | false>` : active dans le channel l\'envoi automatique des devoirs du lendemain',
 
     async execute(client, message, args) {
         const geth = require('./getHomework')
@@ -15,20 +15,14 @@ module.exports = {
         }
 
 
-        let data = JSON.parse(fs.readFileSync('./shed.json'));
-
-        if (args[0] === "true" && args[1] !== null && args[1] !== null && args[2] !== null && args[3] !== null && args[4] !== null && args[5] !== null && args[6] !== null && args[7] !== null) { 
+        if (args[0] === "true") { 
             // add json object to file with the channel id, the guild id and the date and save it
             
             var tmp = {
                 channel: message.channel.id,
                 guild: message.guild.id,
-                date: `${args[1]} ${args[2]} ${args[3]} ${args[4]} ${args[5]} ${args[6]} ${args[7]}`
+                date: `0 0 17 ? JAN,FEB,MAR,APR,MAY,AUG,SEP,OCT,NOV,DEC SUN,MON,TUE,WED,THU *`
             }
-            data.push ( tmp );
-            fs.writeFile('./shed.json', JSON.stringify(data), (err) => {
-                if (err) return console.error(err)
-            })
             await register_cron(geth, client, message).catch(err => console.log(` top: ${err}`));
             message.channel.send('Envoi automatique des devoirs activé !')
         } else if (args[0] === "false"){
