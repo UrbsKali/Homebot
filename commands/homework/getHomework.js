@@ -61,7 +61,7 @@ module.exports = {
 
 async function getHm(date){
     const ed = require("ecoledirecte.js");
-    const session_ = new ed.Session("Urbainisateur", "i}(]HMB^&P@S'4M");
+    const session_ = new ed.Session("USERNAME", "PASSWORD");
 
     const account = await session_.login().catch(err => {
         console.error("This login did not go well.");
